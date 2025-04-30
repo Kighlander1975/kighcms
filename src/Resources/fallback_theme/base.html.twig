@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+	<meta charset="UTF-8">
+	<title>{% block title %}Meine Website{% endblock %}</title>
+	<style>
+		/* Default Theme Basis-Styles */
+
+		body {
+		margin: 0;
+		padding: 0;
+		font-family: Arial, Helvetica, sans-serif;
+		background: #f5f5f7;
+		color: #222;
+		}
+
+		header {
+		background: #2c3e50;
+		color: #fff;
+		padding: 1.5rem 2rem;
+		text-align: center;
+		font-size: 2rem;
+		letter-spacing: 2px;
+		}
+
+		main {
+		padding: 2rem;
+		max-width: 900px;
+		margin: 2rem auto;
+		background: #fff;
+		border-radius: 8px;
+		box-shadow: 0 2px 12px rgba(44,62,80,0.05);
+		}
+
+		footer {
+		background: #222;
+		color: #ccc;
+		text-align: center;
+		padding: 1rem 0;
+		font-size: 0.9rem;
+		margin-top: 3rem;
+		border-radius: 0 0 8px 8px;
+		}
+	</style>
+</head>
+<body>
+<header>
+	{% block header %}
+		{{ theme|capitalize }} Theme
+	{% endblock %}
+</header>
+
+<main>
+	{% block body %}{% endblock %}
+</main>
+
+<footer>
+	{% block footer %}
+		&copy; {{ "now"|date("Y") }} Meine Website. Alle Rechte vorbehalten.
+	{% endblock %}
+</footer>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<theme>
+    <name>default</name>
+    <description>Standard-Theme. Hier kann eine kurze Beschreibung eingefügt werden.</description>
+    <structure>
+        <publicfolder name="css">
+            <file name="styles.css" />
+        </publicfolder>
+        <publicfolder name="js">
+            <file name="main.js" />
+        </publicfolder>
+        <publicfolder name="images" />
+        <themefolder name="pages">
+            <file name="home.html.twig" />
+        </themefolder>
+        <themefolder name="error">
+            <file name="401.html.twig" />
+            <file name="403.html.twig" />
+            <file name="404.html.twig" />
+            <file name="500.html.twig" />
+            <file name="503.html.twig" />
+        </themefolder>
+        <themefile name="base.html.twig" />
+    </structure>
+</theme>

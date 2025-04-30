@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+	<meta charset="UTF-8">
+	<title>{% block title %}Meine Website{% endblock %}</title>
+	<link rel="stylesheet" href="/themes/{{ theme }}/css/styles.css">
+
+	{% block stylesheets %}{% endblock %}
+
+	<script src="/themes/{{ theme }}/js/main.js" defer></script>
+	{% block javascripts %}{% endblock %}
+</head>
+<body>
+<header>
+	{% block header %}
+		Mein {{ theme|capitalize }} Theme
+	{% endblock %}
+</header>
+
+<main>
+	{% block body %}{% endblock %}
+</main>
+
+<footer>
+	{% block footer %}
+		&copy; {{ "now"|date("Y") }} Meine Website. Alle Rechte vorbehalten.
+	{% endblock %}
+</footer>
+</body>
+</html>

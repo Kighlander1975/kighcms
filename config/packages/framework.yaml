@@ -8,6 +8,8 @@ framework:
     #esi: true
     #fragments: true
 
+    error_controller: 'App\Controller\Frontend\ErrorController::show'
+
 when@test:
     framework:
         test: true
