@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+	<meta charset="UTF-8">
+	<title>{% block title %}Adminbereich{% endblock %}</title>
+	<link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('vendor/fontawesome/css/all.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('backend/backend.css') }}">
+	{% block stylesheets %}{% endblock %}
+</head>
+<body>
+<div class="sidebar d-flex flex-column p-3">
+	<a href="{{ path('admin_dashboard') }}"
+	   class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+		<span class="fs-4"><i class="fas fa-cogs"></i> Admin</span>
+	</a>
+	<hr>
+	<ul class="nav nav-pills flex-column mb-auto">
+		<li class="nav-item">
+			<a href="{{ path('admin_dashboard') }}"
+			   class="nav-link {% if app.request.attributes.get('_route') == 'admin_dashboard' %}active{% endif %}">
+				<i class="fas fa-tachometer-alt"></i> Dashboard
+			</a>
+		</li>
+		<li class="nav-item">
+			<a href="{{ path('admin_settings_index') }}"
+			   class="nav-link {% if app.request.attributes.get('_route') starts with 'admin_settings' %}active{% endif %}">
+				<i class="fas fa-sliders-h"></i> Einstellungen Übersicht
+			</a>
+			<ul class="nav flex-column ms-4">
+				<li class="nav-item">
+					<a href="{{ path('admin_settings_site') }}"
+					   class="nav-link {% if app.request.attributes.get('_route') == 'admin_settings_site' %}active{% endif %}">
+						Seiteneinstellungen
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="{{ path('admin_settings_user') }}"
+					   class="nav-link {% if app.request.attributes.get('_route') == 'admin_settings_user' %}active{% endif %}">
+						Benutzer-Einstellungen
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="{{ path('admin_settings_security') }}"
+					   class="nav-link {% if app.request.attributes.get('_route') == 'admin_settings_security' %}active{% endif %}">
+						Sicherheit
+					</a>
+				</li>
+			</ul>
+		</li>
+
+		<li>
+			<a href="#" class="nav-link">
+				<i class="fas fa-users"></i> Benutzer
+			</a>
+		</li>
+		<li>
+			<a href="#" class="nav-link">
+				<i class="fas fa-database"></i> Daten
+			</a>
+		</li>
+		<li>
+			<a href="{{ path('app_logout') }}" class="nav-link text-danger mt-3">
+				<i class="fas fa-sign-out-alt"></i> Logout
+			</a>
+		</li>
+	</ul>
+</div>
+
+<header class="navbar navbar-expand-md navbar-light bg-light shadow-sm" style="z-index: 1030;">
+	<div class="container-fluid">
+		<span class="navbar-brand mb-0 h1"><i class="fas fa-tools"></i> Adminbereich</span>
+		<div class="d-none d-md-block">
+                <span class="text-muted">
+                    {% block header %}
+	                    Willkommen, {{ app.user ? app.user.email : 'Gast' }}!
+                    {% endblock %}
+                </span>
+		</div>
+	</div>
+</header>
+
+<main>
+	{% block body %}{% endblock %}
+</main>
+
+<footer>
+	&copy; {{ "now"|date("Y") }} Mein Backend – entwickelt mit <i class="fas fa-heart text-danger"></i> und Symfony
+</footer>
+<script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('backend/backend.js') }}"></script>
+{% block javascripts %}{% endblock %}
+</body>
+</html>
