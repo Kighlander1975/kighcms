@@ -1,0 +1,20 @@
+{% extends 'backend/base.html.twig' %}
+
+{% block title %}Variable löschen{% endblock %}
+
+{% block body %}
+	<div class="container-fluid">
+		<h1 class="mb-4 text-danger">Variable löschen</h1>
+
+		<div class="alert alert-warning">
+			<strong>Achtung:</strong> Sind Sie sicher, dass Sie die Variable <strong>{{ setting.name }}</strong>
+			(Wert: {{ setting.value }}) löschen möchten?<br>
+			Diese Aktion kann nicht rückgängig gemacht werden.
+		</div>
+
+		<form method="post">
+			<button type="submit" name="confirm" value="yes" class="btn btn-danger">Ja, Löschen</button>
+			<a href="{{ path('admin_settings_variables') }}" class="btn btn-secondary">Nein, Behalten</a>
+		</form>
+	</div>
+{% endblock %}

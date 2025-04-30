@@ -1,0 +1,15 @@
+<div class="mb-3">
+	{{ form_label(form.name) }}
+	{{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+	{{ form_errors(form.name) }}
+</div>
+<div class="mb-3">
+	{{ form_label(form.pre) }}
+	{{ form_widget(form.pre, {'attr': {'class': 'form-select'}}) }}
+	{{ form_errors(form.pre) }}
+</div>
+<div class="mb-3">
+	{{ form_label(form.value) }}
+	{{ form_widget(form.value, {'attr': {'class': 'form-control'}}) }}
+	{{ form_errors(form.value) }}
+</div>

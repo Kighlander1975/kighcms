@@ -1,0 +1,16 @@
+{% extends 'backend/base.html.twig' %}
+
+{% block title %}Variable bearbeiten{% endblock %}
+
+{% block body %}
+	<div class="container-fluid">
+		<h1 class="mb-4">Variable bearbeiten</h1>
+
+		{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+		{% include 'backend/forms/settings_variables.html.twig' %}
+		<button class="btn btn-primary">Speichern</button>
+		{{ form_end(form) }}
+
+		<a class="btn btn-link mt-3" href="{{ path('admin_settings_variables') }}">Zurück zur Übersicht</a>
+	</div>
+{% endblock %}
