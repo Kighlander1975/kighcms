@@ -71,6 +71,12 @@ footer {
     bottom: 0;
 }
 
+table td.variables-pagination nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
 @media (max-width: 768px) {
     .sidebar, header.navbar, main, footer {
         margin-left: 0 !important;

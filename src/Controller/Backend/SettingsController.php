@@ -3,6 +3,7 @@
 
 namespace App\Controller\Backend;
 
+use App\Entity\Settings;
 use App\Form\SettingsVariableType;
 use App\Repository\SettingsRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -41,11 +42,29 @@ final class SettingsController extends AbstractController
     }
 
     #[Route('/variables', name: 'admin_settings_variables')]
-    public function variables(SettingsRepository $settingsRepository): Response
+    public function variables(SettingsRepository $settingsRepository, Request $request): Response
     {
-        $settings = $settingsRepository->findAll();
+        $page = max(1, $request->query->getInt('page', 1));
+        $limit = 10;
+
+        $query = $settingsRepository->createQueryBuilder('s')
+            ->orderBy('s.name', 'ASC')
+            ->setFirstResult(($page - 1) * $limit)
+            ->setMaxResults($limit)
+            ->getQuery();
+
+        $settings = $query->getResult();
+
+        $total = $settingsRepository->createQueryBuilder('s')
+            ->select('COUNT(s.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+
         return $this->render('backend/settings/settings_variables.html.twig', [
             'settings' => $settings,
+            'total' => $total,
+            'page' => $page,
+            'limit' => $limit,
         ]);
     }
 
@@ -57,7 +76,7 @@ final class SettingsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var \App\Entity\Settings $data */
+            /** @var Settings $data */
             $data = $form->getData();
 
             $em->persist($data);

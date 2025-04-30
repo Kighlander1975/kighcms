@@ -25,6 +25,8 @@ class SettingsVariableType extends AbstractType
                     'Allgemein (global_)' => 'global_',
                     'Benutzer (user_)' => 'user_',
                     'Seite (site_)' => 'site_',
+                    'Rollen (roles_)' => 'roles_',
+                    'Hierarchie (hierarchy_)' => 'hierarchy_',
                     // Weitere Präfixe nach Bedarf ergänzen
                 ],
                 'placeholder' => 'Bitte wählen',

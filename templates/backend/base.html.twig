@@ -15,6 +15,7 @@
 		<span class="fs-4"><i class="fas fa-cogs"></i> Admin</span>
 	</a>
 	<hr>
+	{{ app.request.attributes.get('_route') }}
 	<ul class="nav nav-pills flex-column mb-auto">
 		<li class="nav-item">
 			<a href="{{ path('admin_dashboard') }}"
@@ -30,8 +31,14 @@
 			<ul class="nav flex-column ms-4">
 				<li class="nav-item">
 					<a href="{{ path('admin_settings_variables') }}"
-					   class="nav-link {% if app.request.attributes.get('_route') == 'admin_settings_variables' %}active{% endif %}">
+					   class="nav-link {% if app.request.attributes.get('_route') starts with 'admin_settings_variable' %}active{% endif %}">
 						Einstellungsvariaben
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="{{ path('admin_settings_hierarchie') }}"
+					   class="nav-link {% if app.request.attributes.get('_route') starts with 'admin_settings_hierarchie' %}active{% endif %}">
+						Hierarchie Einstellungen
 					</a>
 				</li>
 				<li class="nav-item">

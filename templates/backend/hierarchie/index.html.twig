@@ -1,6 +1,6 @@
 {% extends 'backend/base.html.twig' %}
 
-{% block title %}Admin - Variablen Erstellen (SUPERADMIN){% endblock %}
+{% block title %}Admin - Hierarchien erstellen (Nur für SUPERADMIN){% endblock %}
 
 {% block body %}
 	<div class="container-fluid">
@@ -12,42 +12,32 @@
 				</div>
 			{% endfor %}
 		{% endfor %}
-		<h1 class="mb-4">Variablen erstellen (SUPERADMIN)</h1>
-		<p>Hier können Sie die Variablen für die verschiedenen Einstellungen erstellen/verwalten. DAS IST FÜR
+		<h1 class="mb-4">Hierarchien erstellen (SUPERADMIN)</h1>
+		<p>Hier können Sie Hierarchien für die von Ihnen angelegten Rollen erstellen. DAS IST FÜR
 			SUPERADMINS</p>
 		<table class="table table-striped table-bordered mt-4">
 			<thead>
 			<tr>
 				<th>Name</th>
-				<th>Value</th>
-				<th>Kategorie</th>
+				<th>Hierarchien</th>
 				<th>Aktionen</th>
 			</tr>
 			</thead>
 			<tbody>
-			{% if settings is not empty %}
-				{% for setting in settings %}
+			{% if hierarchien is not empty %}
+				{% for hierarchie in hierarchien %}
 					<tr>
-						<td>{{ setting.name }}</td>
-						<td>{{ setting.value }}</td>
-						<td>
-							{% if '_' in setting.name %}
-								{{ setting.name|split('_', 2)[0] }}
-							{% else %}
-								-
-							{% endif %}
-						</td>
+						<td>{{ hierarchie.name }}</td>
+						<td>{{ hierarchie.value }}</td>
 						<td>
 							<!-- Platz für Bearbeiten/Löschen etc. -->
-							<a href="{{ path('admin_settings_variable_edit', {'id': setting.id}) }}"
-							   class="btn btn-sm btn-primary">Bearbeiten</a>
-							<a href="{{ path('admin_settings_variable_delete', {'id': setting.id}) }}"
-							   class="btn btn-sm btn-danger">Löschen</a>
+							<a href="#" class="btn btn-sm btn-primary disabled">Bearbeiten</a>
+							<a href="#" class="btn btn-sm btn-danger disabled">Löschen</a>
 						</td>
 					</tr>
 				{% endfor %}
 				<tr class="table-footer">
-					<td colspan="4" class="variables-pagination">
+					<td colspan="3" class="variables-pagination">
 						{# Bootstrap Pagination #}
 						{% set maxPage = (total / limit)|round(0, 'ceil') %}
 						<nav aria-label="Seiten" id="variables-pagination">
@@ -69,15 +59,15 @@
 				</tr>
 			{% else %}
 				<tr>
-					<td colspan="4" class="text-center">Keine Einstellungen gefunden.</td>
+					<td colspan="3" class="text-center">Keine Einstellungen gefunden.</td>
 				</tr>
 			{% endif %}
 			</tbody>
 		</table>
 		<!-- Neuer Button unter der Tabelle -->
 		<div class="mt-3">
-			<a href="{{ path('admin_settings_variable_new') }}" class="btn btn-success">
-				<i class="fas fa-plus"></i> Neue Variable anlegen
+			<a href="#" class="btn btn-success disabled">
+				<i class="fas fa-plus"></i> Neue Hierarchie anlegen
 			</a>
 		</div>
 	</div>
